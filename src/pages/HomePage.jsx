@@ -23,7 +23,7 @@ export default function HomePage() {
           return (
             <div className="card" key={carpool._id}>
               <h2>
-                Trajeto: {carpool.whereFrom} - {carpool.whereTo}{" "}
+                Trajeto: {carpool.whereFrom} - {carpool.whereTo}{""}
               </h2>
               <p>Preço por pessoa: {carpool.price}</p>
               <p>Veículo: {carpool.carModel}</p>
@@ -32,7 +32,7 @@ export default function HomePage() {
             </div>
           );
         })}
-        ;
+        
       </div>
     </div>
   );
