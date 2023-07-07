@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 export default function CarpoolDetail() {
   const params = useParams();
@@ -36,7 +37,6 @@ export default function CarpoolDetail() {
     e.preventDefault();
 
     try {
-      //é put ou post??
       const response = await axios.put(
         `https://webdev103.cyclic.app/penaestrada/${params.id}`,
         { people: [...carpools.people, form] }
@@ -48,8 +48,24 @@ export default function CarpoolDetail() {
         age: "",
         phoneNumber: "",
       });
+      toast.success("Carona reservada com sucesso!");
+      setShowCarpoolers(true);
     } catch (error) {
       console.log(error);
+      toast.error("Ops, algo deu errado");
+    }
+  }
+
+  async function handleDelete(e) {
+    try {
+      await axios.delete(
+        `https://webdev103.cyclic.app/penaestrada/${params.id}`
+      );
+      navigate("/");
+      toast.success("Carona deletada com sucesso.");
+    } catch (error) {
+      console.log(error);
+      toast.error("Ops, algo deu errado");
     }
   }
 
@@ -66,7 +82,7 @@ export default function CarpoolDetail() {
       <p>Preço por pessoa: {carpools.price}</p>
       <p>Quantos viajantes? {carpools.capacity}</p>
       <p>Veículo: {carpools.carModel}</p>
-      <p>Motorista verificado: {carpools.verifiedDriver}</p>
+      <p>Motorista verificado: {carpools.verifiedDriver ? "✅" : "❌"}</p>
 
       <button onClick={() => setShowCarpoolers(!showCarpoolers)}>
         Caroneiros confirmados
@@ -85,13 +101,23 @@ export default function CarpoolDetail() {
             })}
         </div>
       )}
-      <button onClick={() => setShowForm(!showForm)}>Pegar essa carona!</button>
+
+      {!(carpools.people?.length >= carpools.capacity) && (
+        <button onClick={() => setShowForm(!showForm)}>
+          Pegar essa carona!
+        </button>
+      )}
+
+      {carpools.people?.length >= carpools.capacity && (
+        <h2>Essa carona já está cheia</h2>
+      )}
+
       {showForm === true && (
         <form>
           <label>Nome:</label>
           <input
             type="text"
-            name="user"
+            name="name"
             value={form.name}
             onChange={handleChange}
             placeholder="Preencha seu nome..."
@@ -117,6 +143,8 @@ export default function CarpoolDetail() {
           <button onClick={handleSubmit}>Enviar pedido</button>
         </form>
       )}
+
+      <button onClick={handleDelete}>Deletar carona</button>
     </div>
   );
 }
