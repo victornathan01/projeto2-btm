@@ -17,11 +17,11 @@ export default function HomePage() {
 
   return (
     <div>
-      <h1> Chegue ao seu destino em poucos cliques: </h1>
+      <h1 className="text-2xl"> Chegue ao seu destino em poucos cliques: </h1>
       <div className="cards">
         {carpools.map((carpool) => {
           return (
-            <div className="card" key={carpool._id}>
+            <div className="border m-4 p-5 rounded w-full shadow-md" key={carpool._id}>
               <h2>
                 Trajeto: {carpool.whereFrom} - {carpool.whereTo}{""}
               </h2>
