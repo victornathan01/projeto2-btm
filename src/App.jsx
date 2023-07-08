@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
-    <div className="bg-background min-h-screen font-sans px-7 pb-14">
+    <div>
       <NavBar />
       <Toaster/>
       <Routes>

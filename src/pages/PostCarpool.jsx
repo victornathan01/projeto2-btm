@@ -26,17 +26,17 @@ export default function PostCarpool() {
 
     try {
       await axios.post("https://webdev103.cyclic.app/penaestrada", form);
-      navigate("/")
+      navigate("/");
     } catch (error) {
       console.log(error);
     }
   }
 
   return (
-    <div>
+    <div className="flex">
       <h1>Cadastre sua carona:</h1>
       <form>
-        <label>Nome: </label>
+        <label>Motorista: </label>
         <input
           type="text"
           name="user"
@@ -44,11 +44,68 @@ export default function PostCarpool() {
           onChange={handleChange}
         />
 
-        <label>Origem: </label>
+        <label>Ponto de origem: </label>
         <input
           type="text"
           name="whereFrom"
           value={form.whereFrom}
+          onChange={handleChange}
+        />
+        <label>Destino: </label>
+        <input
+          type="text"
+          name="whereTo"
+          value={form.whereTo}
+          onChange={handleChange}
+        />
+        <label>Hora de saída: </label>
+        <input
+          type="number"
+          name="departureTime"
+          value={form.departureTime}
+          onChange={handleChange}
+        />
+        <label>Ponto de encontro: </label>
+        <input
+          type="text"
+          name="meetingPlace"
+          value={form.meetingPlace}
+          onChange={handleChange}
+        />
+        <label>Vagas disponíveis: </label>
+        <input
+          type="number"
+          name="capacity"
+          value={form.capacity}
+          onChange={handleChange}
+        />
+        <label>Preço por pessoa:</label>
+        <input
+          type="number"
+          name="price"
+          value={form.price}
+          onChange={handleChange}
+        />
+
+        <label>Preço por pessoa:</label>
+        <input
+          type="number"
+          name="price"
+          value={form.price}
+          onChange={handleChange}
+        />
+        <label>Modelo do veículo:</label>
+        <input
+          type="text"
+          name="carModel"
+          value={form.carModel}
+          onChange={handleChange}
+        />
+        <label>Motorista verificado?</label>
+        <input
+          type="boolean"
+          name="verifiedDriver"
+          value={form.verifiedDriver}
           onChange={handleChange}
         />
 
