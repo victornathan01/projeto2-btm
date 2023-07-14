@@ -70,21 +70,21 @@ export default function CarpoolDetail() {
   }
 
   return (
-    <div>
-      <h1>Detalhes da carona:</h1>
+    <div className="py-8">
+      <h1 className="font-bold text-2xl">Detalhes da carona:</h1>
       <h2>
         {" "}
-        Trajeto: {carpools.whereFrom} - {carpools.whereTo}
+        <strong>Trajeto:</strong> {carpools.whereFrom} - {carpools.whereTo}
       </h2>
-      <p>Motorista: {carpools.user}</p>
-      <p>Horário de saída: {carpools.departureTime}</p>
-      <p>Ponto de encontro: {carpools.meetingPlace}</p>
-      <p>Preço por pessoa: {carpools.price}</p>
-      <p>Quantos viajantes? {carpools.capacity}</p>
-      <p>Veículo: {carpools.carModel}</p>
-      <p>Motorista verificado: {carpools.verifiedDriver ? "✅" : "❌"}</p>
+      <p><strong>Motorista:</strong> {carpools.user}</p>
+      <p><strong>Horário de saída:</strong> {carpools.departureTime}</p>
+      <p><strong>Ponto de encontro:</strong> {carpools.meetingPlace}</p>
+      <p><strong>Preço por pessoa:</strong> {carpools.price}</p>
+      <p><strong>Quantos viajantes?</strong> {carpools.capacity}</p>
+      <p><strong>Veículo:</strong> {carpools.carModel}</p>
+      <p><strong>Motorista verificado:</strong> {carpools.verifiedDriver ? "✅" : "❌"}</p>
 
-      <button onClick={() => setShowCarpoolers(!showCarpoolers)}>
+      <button className="text-blue-900 hover:text-yellow-600 text-center text-xl font-bold pt-2" onClick={() => setShowCarpoolers(!showCarpoolers)}>
         Caroneiros confirmados
       </button>
       {showCarpoolers === true && (
@@ -101,17 +101,18 @@ export default function CarpoolDetail() {
             })}
         </div>
       )}
-
+  <div>
       {!(carpools.people?.length >= carpools.capacity) && (
-        <button onClick={() => setShowForm(!showForm)}>
-          Pegar essa carona!
-        </button>
+        
+       <div className="pt-4 pb-2"><button className="hover:bg-blue-500 bg-blue-900 text-white font-bold py-2 px-4 rounded" onClick={() => setShowForm(!showForm)}>
+          Pegar essa carona! 👍🏽
+        </button></div> 
       )}
 
       {carpools.people?.length >= carpools.capacity && (
-        <h2>Essa carona já está cheia</h2>
+        <h2 className="text-2xl text-yellow-600 underline py-2 pb-6">Essa carona já está cheia!</h2>
       )}
-
+</div>
       {showForm === true && (
         <form>
           <label>Nome:</label>
@@ -140,11 +141,14 @@ export default function CarpoolDetail() {
             onChange={handleChange}
             placeholder="Seu telefone..."
           />
-          <button onClick={handleSubmit}>Enviar pedido</button>
-        </form>
+          <div className="pt-3">
+          <button className="hover:bg-blue-500 bg-blue-900 text-white font-bold p-2 px-4 rounded" onClick={handleSubmit}>Enviar pedido</button>
+       </div>
+       </form>
       )}
 
-      <button onClick={handleDelete}>Deletar carona</button>
+      <div className="pt-20"><button className="hover:bg-blue-500 bg-blue-900 text-white font-bold p-2 px-4 rounded" onClick={handleDelete}>Deletar carona 🗑️</button>
+    </div>
     </div>
   );
 }

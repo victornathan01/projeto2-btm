@@ -80,7 +80,7 @@ export default function PostCarpool() {
           </label>
           <input
             className="bg-gray-100 text-blue-900 text-sm rounded-lg placeholder-gray-400  block w-auto p-2.5 dark:bg-gray-600 dark:placeholder-gray-300 dark:text-white "
-            type="number"
+            type="text"
             name="departureTime"
             value={form.departureTime}
             onChange={handleChange}

@@ -16,24 +16,25 @@ export default function HomePage() {
   }, []);
 
   return (
+    <div className="px-8 pt-4 pb-8">
     <div>
-      <h1 className="text-2xl"> Chegue ao seu destino em poucos cliques: </h1>
+      <h1 className="text-2xl text-yellow-600 text-center p-4 mb-4"> Escolha uma carona abaixo e boa viagem! </h1>
       <div className="cards">
         {carpools.map((carpool) => {
           return (
-            <div className="border m-4 p-5 rounded w-full shadow-md" key={carpool._id}>
+            <div className="border mb-4 p-5 rounded w-full shadow-md" key={carpool._id}>
               <h2>
-                Trajeto: {carpool.whereFrom} - {carpool.whereTo}{""}
+                <strong>Trajeto:</strong> {carpool.whereFrom} - {carpool.whereTo}{""}
               </h2>
-              <p>Preço por pessoa: {carpool.price}</p>
-              <p>Veículo: {carpool.carModel}</p>
-              <p>Motorista verificado: {carpool.verifiedDriver}</p>
-              <Link to={`/carona/${carpool._id}`}>Ver detalhes</Link>
+              <p><strong>Preço por pessoa:</strong> {carpool.price}</p>
+              <p><strong>Veículo:</strong> {carpool.carModel}</p>
+              <p><strong>Motorista verificado:</strong> {carpool.verifiedDriver}</p>
+              <Link className="text-blue-900 hover:text-yellow-600" to={`/carona/${carpool._id}`}>Ver detalhes</Link>
             </div>
           );
         })}
         
       </div>
-    </div>
+    </div></div>
   );
 }
