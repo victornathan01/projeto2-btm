@@ -19,7 +19,7 @@ export default function HomePage() {
     <div className="px-8 pt-4 pb-8">
     <div>
       <h1 className="text-2xl text-yellow-600 text-center p-4 mb-4"> Escolha uma carona abaixo e boa viagem! </h1>
-      <div className="cards">
+      <div className="flex gap-4 cards">
         {carpools.map((carpool) => {
           return (
             <div className="border mb-4 p-5 rounded w-full shadow-md" key={carpool._id}>
