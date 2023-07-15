@@ -9,7 +9,7 @@ Enjoy the benefit of knowing the type of vehicle, its capacity those rides, wher
 Pe na Estrada uses a complete CRUD building method for its design and functionality: Create, Read, Update, Delete features.
 These features will use and interact with a database, where the creation, changes and deletions will come and go from it.
 
-#Technologies used and structure
+# Technologies used and structure
 
 The project uses Javascript, Html5, Css with Tailwind framework within Vite.
 
