@@ -70,10 +70,8 @@ export default function CarpoolDetail() {
   }
 
   return (
-    <div >
-      
+    <div>
       <h1 className="text-center font-bold text-2xl">Detalhes da carona</h1>
-     
 
       <div className="  text-center justify-center  shadow-md  px-8 py-4 flex-col">
         <h2>
@@ -103,33 +101,25 @@ export default function CarpoolDetail() {
           {carpools.verifiedDriver ? "✅" : "❌"}
         </p>
       </div>
-      <div className="flex items-center gap-2 justify-center">
-        <div>
-
-        <button
-          className="hover:bg-yellow-500 bg-yellow-600 text-white font-bold py-2 px-4 rounded"
-          onClick={() => setShowCarpoolers(!showCarpoolers)}
-        >
-          Caroneiros confirmados
-        </button>
-        {showCarpoolers === true && (
-          <div>
-            {carpools.people &&
-              carpools.people.map((person) => {
-                return (
-                  <div key={person.person}>
-                    <p>Nome: {person.name}</p>
-                    <p>Idade: {person.age}</p>
-                    <p>Telefone: {person.phoneNumber}</p>
-                  </div>
-                );
-              })}
-          </div>
+      <div className=" p-4 text-center justify-center">
+        {carpools.people?.length >= carpools.capacity && (
+          <h2 className="text-2xl text-yellow-600 underline ">
+            Essa carona já está cheia!
+          </h2>
         )}
+      </div>
+      <div className="flex my-2 items-center gap-2 justify-center">
+        <div>
+          <button
+            className="hover:bg-yellow-500 bg-yellow-600 text-white font-bold py-2 px-4 rounded"
+            onClick={() => setShowCarpoolers(!showCarpoolers)}
+          >
+            Caroneiros confirmados
+          </button>
         </div>
         <div>
           {!(carpools.people?.length >= carpools.capacity) && (
-            <div className="pt-4 pb-2">
+            <div>
               <button
                 className="hover:bg-blue-500 bg-blue-900 text-white font-bold py-2 px-4 rounded"
                 onClick={() => setShowForm(!showForm)}
@@ -139,57 +129,85 @@ export default function CarpoolDetail() {
             </div>
           )}
         </div>
-
-        {carpools.people?.length >= carpools.capacity && (
-          <h2 className="text-2xl text-yellow-600 underline ">
-            Essa carona já está cheia!
-          </h2>
-        )}
       </div>
-      {showForm === true && (
-        <form>
-          <label>Nome:</label>
-          <input
-            type="text"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            placeholder="Preencha seu nome..."
-          />
 
-          <label>Idade:</label>
-          <input
-            type="number"
-            name="age"
-            value={form.age}
-            onChange={handleChange}
-            placeholder="Sua idade..."
-          />
+      <div className="flex my-2 items-center gap-2 justify-center ">
+        <div>
+          {showCarpoolers === true && (
+            <div>
+              {carpools.people &&
+                carpools.people.map((person) => {
+                  return (
+                    <div className="text-center" key={person.person}>
+                      <p>Nome: {person.name}</p>
+                      <p>Idade: {person.age}</p>
+                      <p>Telefone: {person.phoneNumber}</p>
+                    </div>
+                  );
+                })}
+            </div>
+          )}
+        </div>
 
-          <label>Telefone de contato:</label>
-          <input
-            type="text"
-            name="phoneNumber"
-            value={form.phoneNumber}
-            onChange={handleChange}
-            placeholder="Seu telefone..."
-          />
-          <div className="pt-3">
-            <button
-              className="hover:bg-blue-500 bg-blue-900 text-white font-bold p-2 px-4 rounded"
-              onClick={handleSubmit}
-            >
-              Enviar pedido
-            </button>
-          </div>
-        </form>
-      )}
-      <button
-        className="hover:text-red-700 text-black  font-bold p-2 px-4 "
-        onClick={handleDelete}
-      >
-        Deletar carona 🗑️
-      </button>
+        <div>
+          {showForm === true && (
+            <form>
+              <label className="inline-block font-medium text-blue-900">
+                Nome:
+              </label>
+              <input
+                className=" bg-gray-100 text-blue-900 text-sm rounded-lg placeholder-gray-400  block w-auto p-2.5 dark:bg-gray-600 dark:placeholder-gray-300 dark:text-white "
+                type="text"
+                name="name"
+                value={form.name}
+                onChange={handleChange}
+                placeholder="Preencha seu nome..."
+              />
+
+              <label className=" inline-block font-medium text-blue-900">
+                Idade:
+              </label>
+              <input
+                className="bg-gray-100 text-blue-900 text-sm rounded-lg placeholder-gray-400  block w-auto p-2.5 dark:bg-gray-600 dark:placeholder-gray-300 dark:text-white "
+                type="number"
+                name="age"
+                value={form.age}
+                onChange={handleChange}
+                placeholder="Sua idade..."
+              />
+
+              <label className="inline-block font-medium text-blue-900">
+                Telefone de contato:
+              </label>
+              <input
+                className="bg-gray-100 text-blue-900 text-sm rounded-lg placeholder-gray-400  block w-auto p-2.5 dark:bg-gray-600 dark:placeholder-gray-300 dark:text-white "
+                type="text"
+                name="phoneNumber"
+                value={form.phoneNumber}
+                onChange={handleChange}
+                placeholder="Seu telefone..."
+              />
+              <div className="pt-3 text-center justify-center">
+                <button
+                  className="hover:bg-blue-500 bg-blue-900 text-white font-bold p-2 px-4  rounded"
+                  onClick={handleSubmit}
+                >
+                  Enviar pedido
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
+      </div>
+
+      <div className="text-right justify-center">
+        <button
+          className="hover:text-red-700 text-black font-bold p-2 px-4 "
+          onClick={handleDelete}
+        >
+          Deletar carona 🗑️
+        </button>
+      </div>
     </div>
   );
 }

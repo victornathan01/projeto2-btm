@@ -15,7 +15,7 @@ export default function NavBar() {
 </div>
 
       <p className= "text-center">
-        <Link className="text-blue-900 hover:text-yellow-600 text-center text-2xl" to="/criarcarona">
+        <Link className="text-blue-900 hover:text-yellow-600 text-center text-1xl" to="/criarcarona">
           Ofereça uma carona aqui
         </Link>
       </p>
